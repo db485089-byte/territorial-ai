@@ -5,9 +5,8 @@ workflows:
     environment:
       java: 17
     scripts:
-      - name: Unzip and build APK
+      - name: Build APK
         script: |
-          unzip territorial_tactical_ai_v7_speedfix.zip
           cd territorial_tactical_ai
           echo "android.useAndroidX=true" > gradle.properties
           echo "android.enableJetifier=true" >> gradle.properties
