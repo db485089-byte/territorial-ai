@@ -11,7 +11,22 @@ workflows:
           cd territorial_tactical_ai
           echo "android.useAndroidX=true" > gradle.properties
           echo "android.enableJetifier=true" >> gradle.properties
+
+          brew install gradle
+          gradle wrapper --gradle-version 8.11.1
           chmod +x gradlew
-          ./gradlew assembleDebug --stacktrace
+
+          set -o pipefail
+          ./gradlew assembleDebug --stacktrace --info > gradle_full.log 2>&1 || true
+
+          echo "===== LAST 300 LINES ====="
+          tail -n 300 gradle_full.log
+
+          if grep -q "BUILD FAILED" gradle_full.log; then
+            echo "===== ERROR MATCHES ====="
+            grep -i -n "error\\|exception\\|failed\\|what went wrong\\|unresolved reference\\|manifest merger failed\\|AAPT" gradle_full.log | tail -n 200 || true
+            exit 1
+          fi
     artifacts:
       - territorial_tactical_ai/app/build/outputs/apk/**/*.apk
+      - territorial_tactical_ai/gradle_full.log
