@@ -7,12 +7,12 @@ workflows:
     scripts:
       - name: Unzip and build APK
         script: |
-          unzip territorial_tactical_ai_v4.zip
+          unzip territorial_tactical_ai_v4_fixed.zip
           cd territorial_tactical_ai
           echo "android.useAndroidX=true" > gradle.properties
           echo "android.enableJetifier=true" >> gradle.properties
           brew install gradle
-          gradle wrapper
+          gradle wrapper --gradle-version 8.11.1
           chmod +x gradlew
           ./gradlew assembleDebug
     artifacts:
