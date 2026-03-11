@@ -7,7 +7,7 @@ workflows:
     scripts:
       - name: Unzip and build APK
         script: |
-          unzip territorial_tactical_ai_v5_capturefix.zip
+          unzip territorial_tactical_ai_v6_ingamedetector.zip
           cd territorial_tactical_ai
           echo "android.useAndroidX=true" > gradle.properties
           echo "android.enableJetifier=true" >> gradle.properties
