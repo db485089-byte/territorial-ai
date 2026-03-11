@@ -7,7 +7,7 @@ workflows:
     scripts:
       - name: Unzip and build APK
         script: |
-          unzip territorial_latest.zip
+          unzip territorial_latest_fixedall.zip
           cd territorial_tactical_ai
           echo "android.useAndroidX=true" > gradle.properties
           echo "android.enableJetifier=true" >> gradle.properties
