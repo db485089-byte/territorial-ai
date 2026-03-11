@@ -9,6 +9,8 @@ workflows:
         script: |
           unzip territorial_tactical_ai_v4.zip
           cd territorial_tactical_ai
+          echo "android.useAndroidX=true" > gradle.properties
+          echo "android.enableJetifier=true" >> gradle.properties
           brew install gradle
           gradle wrapper
           chmod +x gradlew
